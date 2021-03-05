@@ -16,16 +16,16 @@ const goods = [{
     },
 ];
 
-const $goodsList = document.querySelector('.goods-list'); //нашли элемент на странице и поместили в переменную 
+const $goodsList = document.querySelector('.goods-list'); // Нашли элемент на странице и поместили в переменную 
 
-const renderGoodsItem = ({title, price}) => { //принимаем объект товаров и создаем html-код  
+const renderGoodsItem = ({title, price}) => { // Принимаем объект товаров и создаем html-код  
     return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
 };
 
 const renderGoodsList = (list = goods) => { 
-    let goodsList = list.map(item => renderGoodsItem(item)).join(''); // проходим по массиву goods 
+    let goodsList = list.map(item => renderGoodsItem(item)).join(''); // Проходим по массиву goods 
 
-    $goodsList.insertAdjacentHTML('beforeend', goodsList); // добавляем на страницу
+    $goodsList.insertAdjacentHTML('beforeend', goodsList); // Добавляем на страницу
 }
 
 renderGoodsList(); 
