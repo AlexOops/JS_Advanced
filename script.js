@@ -55,6 +55,16 @@ class GoodsList {
     }
 }
 
+class CartItem { // Класс элемента корзины (анологичен классу добавляемого элемента, возможно будут еще какие-то значения на передачу: ссылка, краткое описание и т.д)
+    constructor(title, price, img ) { 
+        this.title = title;
+        this.price = price;
+        this.img = img;
+    }
+    render() { 
+        
+    }
+}
 
 class Cart { // Класс корзина
     constructor() {
@@ -69,6 +79,7 @@ class Cart { // Класс корзина
     calcCartItems(){ // Метод подсчета суммы и количества товаров 
 
     }
+    // Какие-то еще методы ...
 }
 
 const list = new GoodsList();
