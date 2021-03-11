@@ -1,31 +1,77 @@
-const goods = [{
-        title: 'Shirt',
-        price: 150
-    },
-    {
-        title: 'Socks',
-        price: 50
-    },
-    {
-        title: 'Jacket',
-        price: 350
-    },
-    {
-        title: 'Shoes',
-        price: 250
-    },
-];
-
-const $goodsList = document.querySelector('.goods-list'); // Нашли элемент на странице и поместили в переменную 
-
-const renderGoodsItem = ({title, price}) => { // Принимаем объект товаров и создаем html-код  
-    return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
-};
-
-const renderGoodsList = (list = goods) => { 
-    let goodsList = list.map(item => renderGoodsItem(item)).join(''); // Проходим по массиву goods 
-
-    $goodsList.insertAdjacentHTML('beforeend', goodsList); // Добавляем на страницу
+class GoodItem {
+    constructor(title = "название", price = "цена", img = 'https://via.placeholder.com/150') {
+        this.title = title;
+        this.price = price;
+        this.img = img;
+    }
+    render() {
+        return `<div class="goods-item">
+                <img class="goods-item-img" src="${this.img}" alt="plug">
+                <h3 class="goods-item-title">${this.title}</h3>
+                <p class="goods-item-price">${this.price} рублей</p>
+                <button class="goods-item-btn">В корзину</button>
+                </div>`;
+    }
 }
 
-renderGoodsList(); 
+class GoodsList {
+    constructor() {
+        this.goods = [];
+    }
+    fetchGoods() {
+        this.goods = [{
+                title: 'Shirt',
+                price: 150
+            },
+            {
+                title: 'Socks',
+                price: 50
+            },
+            {
+                title: 'Jacket',
+                price: 350
+            },
+            {
+                title: 'Shoes',
+                price: 250
+            },
+        ];
+    }
+    render() {
+        let listHtml = '';
+        this.goods.forEach((good) => {
+            const goodItem = new GoodItem(good.title, good.price, good.img);
+            listHtml += goodItem.render();
+        });
+        document.querySelector('.goods-list').insertAdjacentHTML('beforeend', listHtml);
+    }
+    calc() {
+        let sum = 0;
+        this.goods.forEach((good) => {
+            good.price !== undefined ? sum += good.price : "Корзина пуста";
+            console.log(good.price)
+        });
+        console.log(`Сумма всех товаров: ${sum}`);
+    }
+}
+
+
+class Cart { // Класс корзина
+    constructor() {
+        this.goods = [];
+    }
+    addedCartItem() { // Метод добавления товара в корзину 
+
+    }
+    delCartItem(){ // Метод удаления элемента или очестки корзины  
+
+    }
+    calcCartItems(){ // Метод подсчета суммы и количества товаров 
+
+    }
+}
+
+const list = new GoodsList();
+list.fetchGoods();
+list.render();
+list.calc();
